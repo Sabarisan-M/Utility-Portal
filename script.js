@@ -47,3 +47,83 @@ function toggleMode(){
 document.getElementById("body").classList.toggle("light")
 
 }
+/* TOOL SEARCH */
+
+document.getElementById("toolSearch").addEventListener("keyup", function() {
+
+let input = this.value.toLowerCase()
+
+let tools = document.querySelectorAll(".tool-item")
+
+tools.forEach(function(tool){
+
+let text = tool.textContent.toLowerCase()
+
+if(text.includes(input)){
+tool.style.display = "block"
+}
+else{
+tool.style.display = "none"
+}
+
+})
+
+})
+/* TOOL SEARCH DROPDOWN */
+
+const tools = [
+"Dashboard",
+"Drop 999",
+"Fixit Bulk Edit",
+"Fixit Quick Notes",
+"Change Requests Edits",
+"Carrier Commercial Updates",
+"Fixit Recent Transfers",
+"Create Quick Fixit",
+"Delink and Resolve",
+"WebApp/eSIM Logs",
+"List Fixit by Itemtype",
+"Web Payments Logs",
+"Core Pcaps Retrieval",
+"SMSC/HSS Pull",
+"Fixit Analyser",
+"Incident Communication (SMS)",
+"Incident Communication (Email)",
+"Status Page (Beta)"
+];
+
+const searchInput = document.getElementById("toolSearch");
+const resultsBox = document.getElementById("searchResults");
+
+searchInput.addEventListener("keyup", function(){
+
+let input = this.value.toLowerCase();
+
+resultsBox.innerHTML = "";
+
+if(input === ""){
+resultsBox.style.display="none";
+return;
+}
+
+let filtered = tools.filter(tool =>
+tool.toLowerCase().includes(input)
+);
+
+filtered.forEach(tool => {
+
+let div = document.createElement("div");
+div.innerText = tool;
+
+div.onclick = function(){
+searchInput.value = tool;
+resultsBox.style.display="none";
+}
+
+resultsBox.appendChild(div);
+
+});
+
+resultsBox.style.display="block";
+
+});
