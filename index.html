@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<title>Utility Portal</title>
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body id="body">
+
+<div class="container">
+
+<!-- SIDEBAR -->
+
+<div class="sidebar">
+
+<h2 class="logo">⚡ Utility Portal</h2>
+
+<button class="mode-btn" onclick="toggleMode()">🌙Theme</button>
+
+<ul class="menu-list">
+
+<li class="menu-item" onclick="toggleMenu('fixit')">
+<span>🛠</span> Fixit Tools
+</li>
+
+<ul id="fixit" class="submenu">
+<li>Dashboard</li>
+<li>Drop 999</li>
+<li>Fixit Bulk Edit</li>
+<li>Fixit Quick Notes</li>
+<li>Change Requests Edits</li>
+<li>Carrier Commercial Updates</li>
+<li>Fixit Recent Transfers</li>
+<li>Create Quick Fixit</li>
+<li>Delink and Resolve</li>
+<li>WebApp/eSIM Logs</li>
+<li>List Fixit by Itemtype</li>
+<li>Web Payments Logs</li>
+</ul>
+
+<li class="menu-item" onclick="toggleMenu('network')">
+<span>🌐</span> Network Tools
+</li>
+
+<ul id="network" class="submenu">
+<li>Core Pcaps Retrieval</li>
+<li>SMSC/HSS Pull</li>
+<li>Fixit Analyser</li>
+</ul>
+
+<li class="menu-item" onclick="toggleMenu('incident')">
+<span>🚨</span> Incident Management
+</li>
+
+<ul id="incident" class="submenu">
+<li>Incident Communication (SMS)</li>
+<li>Incident Communication (Email)</li>
+<li>Status Page (Beta)</li>
+</ul>
+
+</ul>
+
+</div>
+
+
+
+<!-- MAIN -->
+
+<div class="main">
+
+<h1>Dashboard</h1>
+
+<div class="time-container">
+
+<div class="clock">
+<h3>IST</h3>
+<p id="ist"></p>
+</div>
+
+<div class="clock">
+<h3>UK</h3>
+<p id="uk"></p>
+</div>
+
+<div class="clock">
+<h3>CET</h3>
+<p id="cet"></p>
+</div>
+
+</div>
+
+<div class="alerts">
+<h2>Open Alerts</h2>
+<p>No alerts currently</p>
+</div>
+
+<!--footer-->
+<div class="footer">
+
+<div class="footer-left">
+<span>NOC Utility Tool</span>
+</div>
+
+<div class="footer-right">
+<img src="lebara-logo.png" alt="Lebara Logo">
+</div>
+
+</div>
+
+
+</div>
+
+</div>
+
+<script src="script.js"></script>
+
+</body>
+
+</html>
