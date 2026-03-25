@@ -25,7 +25,7 @@
 </li>
 
 <ul id="fixit" class="submenu">
-<li>Dashboard</li>
+<li onclick="showPage('dashboard')">Dashboard</li>
 <li class="tool-item">Drop 999</li>
 <li class="tool-item">Fixit Bulk Edit</li>
 <li class="tool-item">Fixit Quick Notes</li>
@@ -59,6 +59,15 @@
 <li class="tool-item">Status Page (Beta)</li>
 </ul>
 
+<!-- NEW: Legal Tools -->
+<li class="menu-item" onclick="toggleMenu('legal')">
+<span>⚖️</span> Legal Tools
+</li>
+
+<ul id="legal" class="submenu">
+<li class="tool-item" onclick="showPage('legal-request')">Legal Request Log Pull</li>
+</ul>
+
 </ul>
 
 </div>
@@ -72,6 +81,8 @@
 
 <div class="topbar-left">
 <button class="menu-toggle">☰</button>
+<button class="topbar-back-btn" onclick="goBack()" title="Go Back">&#8592;</button>
+<button class="topbar-home-btn" onclick="showPage('dashboard')" title="Home">🏠</button>
 <span class="top-title">NOC Tools</span>
 </div>
 
@@ -86,16 +97,16 @@ id="toolSearch">
 <div id="searchResults" class="search-results"></div>
 
 </div>
-
-
 </div>
 
 <div class="topbar-right">
 <span class="user-badge">NOC</span>
 </div>
 
-
 </div>
+
+<!-- DASHBOARD PAGE -->
+<div id="page-dashboard">
 
 <h1>Dashboard</h1>
 
@@ -160,16 +171,93 @@ id="toolSearch">
 <p>No alerts currently</p>
 </div>
 
+</div>
+
+<!-- LEGAL REQUEST LOG PULL PAGE -->
+<div id="page-legal-request" style="display:none;">
+
+<h1>&#9878;&#65039; Legal Request Log Pull</h1>
+<p style="margin-bottom:25px; opacity:0.6; font-size:14px;">Enter the Excel filename to pull legal request logs and query Athena.</p>
+
+<div class="legal-card">
+
+<div class="legal-form-group">
+<label>Excel Filename</label>
+<div class="legal-input-row">
+<input type="text"
+id="legalFilename"
+class="legal-input"
+placeholder="e.g. DDMMYYYY"
+/>
+<span class="legal-input-hint">.xlsx</span>
+</div>
+<p class="legal-hint">Enter the date-based filename without extension. Example: <strong>DDMMYYYY</strong></p>
+</div>
+
+<div class="legal-files-preview" id="legalFilesPreview" style="display:none;">
+<p style="font-size:13px; opacity:0.6; margin-bottom:10px;">The following files will be used/created:</p>
+<div class="legal-file-list" id="legalFileList"></div>
+</div>
+
+<button class="legal-run-btn" onclick="runLegalScript()" id="legalRunBtn">
+▶ Run Script
+</button>
+
+<div class="legal-status" id="legalStatus" style="display:none;">
+<div class="legal-status-icon" id="legalStatusIcon">⏳</div>
+<div>
+<p id="legalStatusText">Running... Please wait</p>
+<p style="font-size:12px; opacity:0.6;" id="legalStatusSub">This may take a few minutes depending on data size.</p>
+</div>
+</div>
+
+<div class="legal-steps" id="legalSteps" style="display:none;">
+<div class="legal-step" id="step1">
+<span class="step-icon">⏳</span>
+<span>Step 1: Reading Excel file and connecting to S3...</span>
+</div>
+<div class="legal-step" id="step2">
+<span class="step-icon">⏸</span>
+<span>Step 2: Pulling matching log files from S3...</span>
+</div>
+<div class="legal-step" id="step3">
+<span class="step-icon">⏸</span>
+<span>Step 3: Querying Athena with matched IPs...</span>
+</div>
+<div class="legal-step" id="step4">
+<span class="step-icon">⏸</span>
+<span>Step 4: Generating output Excel file...</span>
+</div>
+</div>
+
+<div class="legal-download" id="legalDownload" style="display:none;">
+<div class="legal-success-msg">
+<span>✅</span>
+<span>Script completed successfully!</span>
+</div>
+<button class="legal-download-btn" onclick="downloadOutput()">
+⬇ Download Output Excel
+</button>
+<p style="font-size:12px; opacity:0.5; margin-top:8px;" id="legalOutputFilename"></p>
+</div>
+
+<div class="legal-error" id="legalError" style="display:none;">
+<span>❌</span>
+<span id="legalErrorText">An error occurred. Please check the filename and try again.</span>
+</div>
+
+</div>
+
+</div>
+
 <!--footer-->
 <div class="footer">
-
 <div class="footer-left">
 <span>NOC Utility Tool</span>
 </div>
 </div>
 
 </div>
-
 
 </div>
 
